@@ -1,0 +1,30 @@
+GET http://localhost:3000/api/task
+###
+GET http://localhost:3000/api/task/fea71292-08bd-4b3a-b120-4b82a3cd640a
+###
+POST http://localhost:3000/api/task
+Content-Type: application/json
+
+{
+    "task": "Some task text.",
+    "creation_date": "12/10/2005"
+}
+
+###
+POST http://localhost:3000/api/task
+Content-Type: application/json
+
+{
+    "task": "some random text here.",
+    "creation_date": "10/5/2077"
+}
+###
+PUT http://localhost:3000/api/task/fea71292-08bd-4b3a-b120-4b82a3cd640a
+Content-Type: application/json
+
+{
+    "task": "Some task text updated.",
+    "creation_date": "12/10/2015"
+}
+###
+DELETE http://localhost:3000/api/task/fea71292-08bd-4b3a-b120-4b82a3cd640a
