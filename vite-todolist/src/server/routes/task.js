@@ -11,17 +11,17 @@ const taskRouter = express.Router();
     creation_date: Date()
 */
 
-taskRouter.get('/task', (req, res) => {
+taskRouter.get('/', (req, res) => {
     res.json(db.getAllTasks());
     res.status(200);
 });
 
-taskRouter.get('/task/:id', (req, res) => {
+taskRouter.get('/:id', (req, res) => {
     res.json(db.getTask(req.params.id));
     res.status(200);
 });
 
-taskRouter.post('/task', (req, res) => {
+taskRouter.post('/', (req, res) => {
     db.createTask({
         id: uuidv4(),
         task: req.body.task,
@@ -30,12 +30,12 @@ taskRouter.post('/task', (req, res) => {
     res.status(200);
 });
 
-taskRouter.put('/task/:id', (req, res) => {
+taskRouter.put('/:id', (req, res) => {
     db.update({id: req.params.id, ...req.body});
     res.status(200);
 });
 
-taskRouter.delete('/task/:id', (req, res) => {
+taskRouter.delete('/:id', (req, res) => {
     db.delete(req.params.id);
     res.status(200);
 });
