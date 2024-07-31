@@ -26,7 +26,7 @@ taskRouter.post('/', (req, res) => {
     db.createTask({
         id: uuidv4(),
         task: req.body.task,
-        creation_date: req.body.creation_date,
+        creationDate: req.body.creationDate,
         isDone: false
     });
     res.status(200);

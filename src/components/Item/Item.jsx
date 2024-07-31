@@ -6,8 +6,11 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ThemeProvider } from '@mui/material/styles';
 import MainTheme from '../../theme/MainTheme';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TaskInfo from '../TaskInfo/TaskInfo';
+import axios from 'axios';
+
+const BASE_URL = 'http://localhost:3000/api/task';
 
 const constainerStyles = {
     bgcolor: 'main.platinum',
@@ -33,18 +36,32 @@ const taskInfoStyles = {
 };
 
 function Item({ task, creationDate, isDone, id }) {
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(isDone);
 
-    const handleChangeCheckbox = (event) => {
-        setChecked(event.target.checked);
+    const handleChangeCheckbox = async () => {
+        const previousChecked = checked;
+        setChecked(c => !c);
+        try{
+            await axios.put(`${BASE_URL}/${id}`, {
+                task,
+                creationDate,
+                isDone: !previousChecked
+            });            
+        } catch(error) {
+            setChecked(previousChecked);
+            console.log('ERROR WHILE CHECKING BOX');
+            console.log(error);
+        }
     }
 
+    useEffect(() => console.log('rerendered'))
+    
     return (
         <ThemeProvider theme={MainTheme}>
             <Container sx={constainerStyles}>
                 <Box sx={taskInfoStyles}>
                     <Checkbox onChange={handleChangeCheckbox} checked={checked} sx={buttonStyles}/>
-                    <TaskInfo task={task} date={creationDate} done={isDone} />
+                    <TaskInfo task={task} creationDate={creationDate} isDone={checked} />
                 </Box>
 
                 <Box>

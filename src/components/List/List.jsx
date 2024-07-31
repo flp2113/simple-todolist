@@ -43,7 +43,7 @@ function List() {
                     return (
                         <Item key={t.id} 
                             task={t.task} 
-                            creationDate={t.creation_date} 
+                            creationDate={t.creationDate} 
                             isDone={t.isDone} 
                             id={t.id}
                         />
