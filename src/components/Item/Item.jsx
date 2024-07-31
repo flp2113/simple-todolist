@@ -1,14 +1,18 @@
+import { useState } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { ThemeProvider } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 import MainTheme from '../../theme/MainTheme';
-import { useState } from 'react';
 import TaskInfo from '../TaskInfo/TaskInfo';
 import axios from 'axios';
+
+import EditTaskButton from '../EditTaskButton/EditTaskButton';
 
 const BASE_URL = 'http://localhost:3000/api/task';
 
@@ -37,6 +41,9 @@ const taskInfoStyles = {
 
 function Item({ task, creationDate, isDone, id, handleClickDelete }) {
     const [checked, setChecked] = useState(isDone);
+    const [open, setOpen] = useState(false);
+
+    const handleEditClick = () => setOpen(o => !o);
 
     const handleChangeCheckbox = async () => {
         const previousChecked = checked;
@@ -53,7 +60,7 @@ function Item({ task, creationDate, isDone, id, handleClickDelete }) {
             console.log(error);
         }
     }
-    
+
     return (
         <ThemeProvider theme={MainTheme}>
             <Container sx={constainerStyles}>
@@ -62,9 +69,7 @@ function Item({ task, creationDate, isDone, id, handleClickDelete }) {
                     <TaskInfo task={task} creationDate={creationDate} isDone={checked} />
                 </Box>
                 <Box>
-                    <IconButton sx={buttonStyles} aria-label="edit">
-                        <ModeEditIcon />
-                    </IconButton>
+                    <EditTaskButton open={open} handleEditClick={handleEditClick} />
                     <IconButton onClick={() => handleClickDelete(id)} sx={buttonStyles} aria-label="delete">
                         <DeleteIcon />
                     </IconButton>
