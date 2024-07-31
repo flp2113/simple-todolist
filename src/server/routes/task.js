@@ -9,6 +9,7 @@ const taskRouter = express.Router();
     id: uuid()
     task: string
     creation_date: Date()
+    isDone: boolean
 */
 
 taskRouter.get('/', (req, res) => {
@@ -25,7 +26,8 @@ taskRouter.post('/', (req, res) => {
     db.createTask({
         id: uuidv4(),
         task: req.body.task,
-        creation_date: req.body.creation_date
+        creation_date: req.body.creation_date,
+        isDone: false
     });
     res.status(200);
 });

@@ -1,0 +1,23 @@
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+:root{
+    --rich-black: #0D1B2A;
+    --oxford-blue: #1B263B;
+    --yinmn-blue: #415A77;
+    --silverlake-blue: #778DA9;
+    --platinum: #E0E1DD;
+}
+
+body{
+    color: var(--platinum);
+    background-color: var(--rich-black);
+}

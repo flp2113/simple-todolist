@@ -1,7 +1,7 @@
 {
-  "name": "vite-todolist",
+  "name": "simple-todolist",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,6 +11,11 @@
     "server": "nodemon src/server/server.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.5",
+    "@mui/material": "^5.16.5",
+    "axios": "^1.7.2",
     "cors": "^2.8.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
