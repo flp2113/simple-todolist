@@ -36,6 +36,16 @@ function List() {
         }
     }, []);
 
+    const handleClickDelete = async (id) => {
+        try{
+            setTasks(prevTasks => prevTasks.filter(t => t.id !== id));
+            axios.delete(`${BASE_URL}/${id}`);
+        } catch(error) {
+            console.log('ERROR WHILE DELETING TASK');
+            console.log(error);
+        } 
+    }
+
     return (
         <ThemeProvider theme={MainTheme}>
             <Container sx={constainerStyles}>
@@ -46,6 +56,7 @@ function List() {
                             creationDate={t.creationDate} 
                             isDone={t.isDone} 
                             id={t.id}
+                            handleClickDelete={handleClickDelete}
                         />
                     );
                 })}

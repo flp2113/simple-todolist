@@ -6,7 +6,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ThemeProvider } from '@mui/material/styles';
 import MainTheme from '../../theme/MainTheme';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TaskInfo from '../TaskInfo/TaskInfo';
 import axios from 'axios';
 
@@ -35,7 +35,7 @@ const taskInfoStyles = {
     alignItems: 'center'
 };
 
-function Item({ task, creationDate, isDone, id }) {
+function Item({ task, creationDate, isDone, id, handleClickDelete }) {
     const [checked, setChecked] = useState(isDone);
 
     const handleChangeCheckbox = async () => {
@@ -53,8 +53,6 @@ function Item({ task, creationDate, isDone, id }) {
             console.log(error);
         }
     }
-
-    useEffect(() => console.log('rerendered'))
     
     return (
         <ThemeProvider theme={MainTheme}>
@@ -63,12 +61,11 @@ function Item({ task, creationDate, isDone, id }) {
                     <Checkbox onChange={handleChangeCheckbox} checked={checked} sx={buttonStyles}/>
                     <TaskInfo task={task} creationDate={creationDate} isDone={checked} />
                 </Box>
-
                 <Box>
                     <IconButton sx={buttonStyles} aria-label="edit">
                         <ModeEditIcon />
                     </IconButton>
-                    <IconButton sx={buttonStyles} aria-label="delete">
+                    <IconButton onClick={() => handleClickDelete(id)} sx={buttonStyles} aria-label="delete">
                         <DeleteIcon />
                     </IconButton>
                 </Box>
