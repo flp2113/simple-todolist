@@ -1,11 +1,12 @@
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
-import MainTheme from '../../theme/MainTheme';
-import Item from '../Item/Item';
+import MainTheme from '../theme/MainTheme';
+import Item from './Item';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3000/api/task';
+const date = new Date();
 
 const constainerStyles = {
     mt: '25px',
@@ -46,6 +47,18 @@ function List() {
         } 
     }
 
+    const handleClickUpdate = async (id, taskUpdated) => {
+        try{
+            await axios.put(`${BASE_URL}/${id}`, {
+                task: taskUpdated,
+                creationDate: `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+            });
+        } catch(error) {
+            console.log('ERROR WHILE UPDATING TASK');
+            console.log(error);
+        }
+    };
+
     return (
         <ThemeProvider theme={MainTheme}>
             <Container sx={constainerStyles}>
@@ -57,6 +70,7 @@ function List() {
                             isDone={t.isDone} 
                             id={t.id}
                             handleClickDelete={handleClickDelete}
+                            handleClickUpdate={handleClickUpdate}
                         />
                     );
                 })}

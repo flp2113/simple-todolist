@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import MemDB from '../database/memorydb.js';
 
 const db = new MemDB;
+const date = new Date();
 const taskRouter = express.Router();
 
 /*   REQUEST BODY EXAMPLE
@@ -26,7 +27,7 @@ taskRouter.post('/', (req, res) => {
     db.createTask({
         id: uuidv4(),
         task: req.body.task,
-        creationDate: req.body.creationDate,
+        creationDate: `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`,
         isDone: false
     });
     res.status(200);

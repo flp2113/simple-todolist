@@ -6,8 +6,7 @@ POST http://localhost:3000/api/task
 Content-Type: application/json
 
 {
-    "task": "Some task text.",
-    "creationDate": "12/10/2005"
+    "task": "Some task text."
 }
 
 ###
@@ -15,16 +14,14 @@ POST http://localhost:3000/api/task
 Content-Type: application/json
 
 {
-    "task": "some random text here.",
-    "creationDate": "10/5/2077"
+    "task": "some random text here."
 }
 ###
-PUT http://localhost:3000/api/task/fea71292-08bd-4b3a-b120-4b82a3cd640a
+PUT http://localhost:3000/api/task/71ec2a19-22be-46b9-8573-b732c9b516de
 Content-Type: application/json
 
 {
-    "task": "Some task text updated.",
-    "creationDate": "12/10/2015"
+    "task": "Some task text updated."
 }
 ###
 DELETE http://localhost:3000/api/task/fea71292-08bd-4b3a-b120-4b82a3cd640a

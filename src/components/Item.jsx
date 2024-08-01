@@ -3,16 +3,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import MainTheme from '../../theme/MainTheme';
-import TaskInfo from '../TaskInfo/TaskInfo';
+import MainTheme from '../theme/MainTheme';
+import TaskInfo from './TaskInfo';
 import axios from 'axios';
-
-import EditTaskButton from '../EditTaskButton/EditTaskButton';
+import DeleteTaskButton from './DeleteTaskButton.jsx/DeleteTaskButton';
+import EditTaskButton from './EditTaskButton';
 
 const BASE_URL = 'http://localhost:3000/api/task';
 
@@ -39,11 +34,11 @@ const taskInfoStyles = {
     alignItems: 'center'
 };
 
-function Item({ task, creationDate, isDone, id, handleClickDelete }) {
+function Item({ task, creationDate, isDone, id, handleClickDelete, handleClickUpdate }) {
     const [checked, setChecked] = useState(isDone);
     const [open, setOpen] = useState(false);
 
-    const handleEditClick = () => setOpen(o => !o);
+    const handleStatusModal = () => setOpen(o => !o);
 
     const handleChangeCheckbox = async () => {
         const previousChecked = checked;
@@ -69,21 +64,12 @@ function Item({ task, creationDate, isDone, id, handleClickDelete }) {
                     <TaskInfo task={task} creationDate={creationDate} isDone={checked} />
                 </Box>
                 <Box>
-                    <EditTaskButton open={open} handleEditClick={handleEditClick} />
-                    <IconButton onClick={() => handleClickDelete(id)} sx={buttonStyles} aria-label="delete">
-                        <DeleteIcon />
-                    </IconButton>
+                    <EditTaskButton open={open} id={id} handleStatusModal={handleStatusModal} handleClickUpdate={handleClickUpdate} />
+                    <DeleteTaskButton id={id} handleClickDelete={handleClickDelete} />
                 </Box>
             </Container>
         </ThemeProvider>
     );
 }
-
-/*
-    Checkbox
-    Task Content
-    Button Delete
-    Button Update
-*/
 
 export default Item;
