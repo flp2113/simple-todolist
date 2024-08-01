@@ -10,29 +10,8 @@ import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-
-const buttonStyles = {
-    color: 'main.yinmn_blue',
-    '&.Mui-checked': {
-        color: 'main.yinmn_blue',
-    },
-    '& .MuiSvgIcon-root': { 
-        fontSize: 30 
-    }
-};
-
-const modalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'main.yinmn_blue',
-    borderRadius: '10px',
-    boxShadow: 24,
-    p: 4,
-    textAlign: 'center'
-};
+import { EditTaskModalStyle } from './styles/EditTaskButtonStyles';
+import { CheckboxButtonStyle } from './styles/GeneralStyles';
 
 function EditTaskButton({ open, id, handleStatusModal, handleClickUpdate }) {
     const [updatedTask, setUpdatedTask] = useState("");
@@ -46,11 +25,11 @@ function EditTaskButton({ open, id, handleStatusModal, handleClickUpdate }) {
 
     return (
         <ThemeProvider theme={MainTheme}>
-            <IconButton onClick={handleStatusModal} sx={buttonStyles} aria-label="edit">
+            <IconButton onClick={handleStatusModal} sx={CheckboxButtonStyle} aria-label="edit">
                 <ModeEditIcon />
             </IconButton>
             <Modal open={open} aria-labelledby="modal-title" aria-describedby="modal-form">
-                <Box sx={modalStyle}>
+                <Box sx={EditTaskModalStyle}>
                     <Typography sx={{ color: 'main.platinum' }} id="modal-title" variant="h4" component="h2">Editing task</Typography>
                     <Stack spacing={2}>
                         <FormControl>

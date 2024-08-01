@@ -8,31 +8,10 @@ import TaskInfo from './TaskInfo';
 import axios from 'axios';
 import DeleteTaskButton from './DeleteTaskButton.jsx/DeleteTaskButton';
 import EditTaskButton from './EditTaskButton';
+import { ItemContainerStyle, ItemBoxStyle } from './styles/ItemStyles';
+import { CheckboxButtonStyle } from './styles/GeneralStyles';
 
 const BASE_URL = 'http://localhost:3000/api/task';
-
-const constainerStyles = {
-    bgcolor: 'main.platinum',
-    borderRadius: '5px',
-    p: '5px',
-    display: 'flex',
-    justifyContent: 'space-between'
-};
-
-const buttonStyles = {
-    color: 'main.yinmn_blue',
-    '&.Mui-checked': {
-        color: 'main.yinmn_blue',
-    },
-    '& .MuiSvgIcon-root': { 
-        fontSize: 30 
-    }
-};
-
-const taskInfoStyles = {
-    display: 'flex',
-    alignItems: 'center'
-};
 
 function Item({ task, creationDate, isDone, id, handleClickDelete, handleClickUpdate }) {
     const [checked, setChecked] = useState(isDone);
@@ -58,9 +37,9 @@ function Item({ task, creationDate, isDone, id, handleClickDelete, handleClickUp
 
     return (
         <ThemeProvider theme={MainTheme}>
-            <Container sx={constainerStyles}>
-                <Box sx={taskInfoStyles}>
-                    <Checkbox onChange={handleChangeCheckbox} checked={checked} sx={buttonStyles}/>
+            <Container sx={ItemContainerStyle}>
+                <Box sx={ItemBoxStyle}>
+                    <Checkbox onChange={handleChangeCheckbox} checked={checked} sx={CheckboxButtonStyle}/>
                     <TaskInfo task={task} creationDate={creationDate} isDone={checked} />
                 </Box>
                 <Box>

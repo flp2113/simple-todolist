@@ -4,19 +4,10 @@ import MainTheme from '../theme/MainTheme';
 import Item from './Item';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { ListContainerStyle } from './styles/ListStyles';
 
 const BASE_URL = 'http://localhost:3000/api/task';
 const date = new Date();
-
-const constainerStyles = {
-    mt: '25px',
-    bgcolor: 'main.yinmn_blue',
-    borderRadius: '10px',
-    p: '15px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px'
-};
 
 function List() {
 
@@ -61,7 +52,7 @@ function List() {
 
     return (
         <ThemeProvider theme={MainTheme}>
-            <Container sx={constainerStyles}>
+            <Container sx={ListContainerStyle}>
                 {tasks.map(t => {
                     return (
                         <Item key={t.id} 
