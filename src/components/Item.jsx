@@ -6,7 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import MainTheme from '../theme/MainTheme';
 import TaskInfo from './TaskInfo';
 import axios from 'axios';
-import DeleteTaskButton from './DeleteTaskButton.jsx/DeleteTaskButton';
+import DeleteTaskButton from './DeleteTaskButton'
 import EditTaskButton from './EditTaskButton';
 import { ItemContainerStyle, ItemBoxStyle } from './styles/ItemStyles';
 import { CheckboxButtonStyle } from './styles/GeneralStyles';
