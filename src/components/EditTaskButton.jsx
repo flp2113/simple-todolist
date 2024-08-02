@@ -13,13 +13,13 @@ import { useState } from 'react';
 import { EditTaskModalStyle } from './styles/EditTaskButtonStyles';
 import { CheckboxButtonStyle } from './styles/GeneralStyles';
 
-function EditTaskButton({ open, id, handleStatusModal, handleClickUpdate }) {
+function EditTaskButton({ open, id, isDone, handleStatusModal, handleClickUpdate }) {
     const [updatedTask, setUpdatedTask] = useState("");
 
     const handleInputChange = (event) => setUpdatedTask(event.target.value);
 
     const confirmUpdateTask = () => {
-        handleClickUpdate(id, updatedTask);
+        handleClickUpdate(id, isDone, updatedTask);
         window.location.reload();
     } 
 
@@ -37,7 +37,7 @@ function EditTaskButton({ open, id, handleStatusModal, handleClickUpdate }) {
                         </FormControl>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button onClick={confirmUpdateTask} variant="contained" color="success">Confirm</Button>
-                            <Button variant="contained" color="error">Close</Button>
+                            <Button onClick={handleStatusModal} variant="contained" color="error">Close</Button>
                         </Box>
                     </Stack>
                 </Box>

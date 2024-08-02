@@ -43,7 +43,7 @@ function Item({ task, creationDate, isDone, id, handleClickDelete, handleClickUp
                     <TaskInfo task={task} creationDate={creationDate} isDone={checked} />
                 </Box>
                 <Box>
-                    <EditTaskButton open={open} id={id} handleStatusModal={handleStatusModal} handleClickUpdate={handleClickUpdate} />
+                    <EditTaskButton open={open} id={id} isDone={isDone} handleStatusModal={handleStatusModal} handleClickUpdate={handleClickUpdate} />
                     <DeleteTaskButton id={id} handleClickDelete={handleClickDelete} />
                 </Box>
             </Container>

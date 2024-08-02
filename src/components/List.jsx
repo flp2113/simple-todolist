@@ -38,11 +38,12 @@ function List() {
         } 
     }
 
-    const handleClickUpdate = async (id, taskUpdated) => {
+    const handleClickUpdate = async (id, isDone, taskUpdated) => {
         try{
             await axios.put(`${BASE_URL}/${id}`, {
                 task: taskUpdated,
-                creationDate: `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+                creationDate: `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`,
+                isDone
             });
         } catch(error) {
             console.log('ERROR WHILE UPDATING TASK');
