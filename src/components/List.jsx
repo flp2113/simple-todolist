@@ -5,6 +5,7 @@ import Item from './Item';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ListContainerStyle } from './styles/ListStyles';
+import AddTaskButton from './AddTaskButton';
 
 const BASE_URL = 'http://localhost:3000/api/task';
 const date = new Date();
@@ -51,6 +52,17 @@ function List() {
         }
     };
 
+    const handleClickAddTask = (newTask) => {
+        try{
+            axios.post(BASE_URL, {
+                task: newTask
+            });
+        } catch(error) {
+            console.log('ERROR WHILE ADDING NEW TASK');
+            console.log(error);
+        }
+    };
+
     return (
         <ThemeProvider theme={MainTheme}>
             <Container sx={ListContainerStyle}>
@@ -66,6 +78,7 @@ function List() {
                         />
                     );
                 })}
+                <AddTaskButton handleClickAddTask={handleClickAddTask} />
             </Container>
         </ThemeProvider>
     );
