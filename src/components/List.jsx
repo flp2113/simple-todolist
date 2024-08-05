@@ -10,7 +10,7 @@ import AddTaskButton from './AddTaskButton';
 const BASE_URL = 'http://localhost:3000/api/task';
 const date = new Date();
 
-function List() {
+function List({ filterValue }) {
 
     const [tasks, setTasks] = useState([]);
 
@@ -27,7 +27,7 @@ function List() {
             console.log('ERROR WHILE FETCHING TASKS');
             console.log(error);
         }
-    }, []);
+    }, [filterValue]);
 
     const handleClickDelete = async (id) => {
         try{
@@ -63,15 +63,22 @@ function List() {
         }
     };
 
+    const filteredTasks = tasks.filter(t => {
+        if (filterValue === 'all') return true;
+        if (filterValue === 'done') return t.isDone;
+        if (filterValue === 'not-done') return !t.isDone;
+        return true;
+    });
+
     return (
         <ThemeProvider theme={MainTheme}>
             <Container sx={ListContainerStyle}>
-                {tasks.map(t => {
+                {filteredTasks.map(t => {
                     return (
                         <Item key={t.id} 
-                            task={t.task} 
-                            creationDate={t.creationDate} 
-                            isDone={t.isDone} 
+                            task={t.task}
+                            creationDate={t.creationDate}
+                            isDone={t.isDone}
                             id={t.id}
                             handleClickDelete={handleClickDelete}
                             handleClickUpdate={handleClickUpdate}

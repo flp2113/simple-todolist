@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -34,6 +34,8 @@ function Item({ task, creationDate, isDone, id, handleClickDelete, handleClickUp
             console.log(error);
         }
     }
+
+    useEffect(() => async () => {}, [checked]);
 
     return (
         <ThemeProvider theme={MainTheme}>

@@ -1,5 +1,5 @@
 const ListContainerStyle = {
-    mt: '25px',
+    mt: '5px',
     bgcolor: 'main.yinmn_blue',
     borderRadius: '10px',
     p: '15px',
